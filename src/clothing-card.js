@@ -1,86 +1,99 @@
 import { LitElement, html, css } from 'lit';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
-
 class ClothingCard extends LitElement {
-  static properties = {
-    header: { type: String },
+  static get properties() {
+    return {
+      name: {
+        type: String,
+        reflect: true
+      },
+
+      variation: {
+        type: Boolean,
+        reflect: true
+      },
+
+      information: {
+        type: String
+      }
+    }
   }
 
   static styles = css`
     :host {
-      min-height: 100vh;
+      display: inline-block;
+    }
+    
+    .cards {
+      display: flex;
+      max-width: 8000px;
+      margin: auto;
+      justify-content: center;
+    }
+
+    .card {
+      max-width: 300px;
+      background-color: #9dcc8b;
+      border: 1px solid black;
+      margin: 16px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      font-size: calc(10px + 2vmin);
-      color: #1a2b42;
-      max-width: 960px;
-      margin: 0 auto;
+      transition: transform 0.3s;
+    }
+
+    :host([variation]) .card {
+      background-color: #008aff;
+    }
+
+    .card img {
+      width: 275px;
+      height: 300px;
+      border-radius: 16px;
+    }
+
+    .card-info {
       text-align: center;
-      background-color: var(--clothing-card-background-color);
+      margin-top: 8px;
     }
 
-    main {
-      flex-grow: 1;
+    .details {
+      padding: 10px;
     }
 
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
-    }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
-    }
-
-    .app-footer a {
-      margin-left: 5px;
+    .card-details-contents ::slotted(img) {
+      max-width: 100px;
+      display: block;
+      margin: 0 auto;
     }
   `;
 
+
   constructor() {
     super();
-    this.header = 'My app';
+    this.name = "T-Shirt";
+    this.variation = false;
+    this.information = null;
   }
 
   render() {
     return html`
-      <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
-        <p>Edit <code>src/ClothingCard.js</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
-      </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
+      <div class="cards">
+        <section class="card">
+          <div class="card-info">
+            <h2>${this.name}</h2>
+            <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_1280.jpg" alt="new arrivals">
+            <details class="details">
+              <summary>Details</summary>
+                <div class="card-details-contents">
+                  <p>${this.information}</p>
+                  <slot></slot>
+                </div>
+            </details>
+          </div>
+        </section>
+      </div>
     `;
   }
 }

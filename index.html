@@ -10,18 +10,28 @@
   <style>
     html,
     body {
-      margin: 0;
-      padding: 0;
       font-family: sans-serif;
-      background-color: #ededed;
+      background-color: #242424;
     }
   </style>
   <title>clothing-card</title>
 </head>
 
 <body>
-  <clothing-card></clothing-card>
+  <header>
+    <h1>Clothing Store</h1>
+  </header>
 
+  <div class="btn-wrapper">
+    <button id="duplicate">Duplicate</button>
+    <button id="delcard">Delete Card</button>
+    <button id="background">Toggle Background Color</button>
+    <button id="modifytitle">Change Heading</button>
+  </div>
+  
+  <div id="app">
+    <clothing-card information="We have new t-shirts!"></clothing-card>
+  </div>
   <script type="module" src="./src/clothing-card.js"></script>
 </body>
 
