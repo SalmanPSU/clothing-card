@@ -1,5 +1,7 @@
 import { LitElement, html, css } from 'lit';
 
+const tshirt = new URL('../assets/tshirt.jpg', import.meta.url).href;
+
 class ClothingCard extends LitElement {
   static get properties() {
     return {
@@ -83,7 +85,7 @@ class ClothingCard extends LitElement {
         <section class="card">
           <div class="card-info">
             <h2>${this.name}</h2>
-            <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_1280.jpg" alt="new arrivals">
+            <img src="${tshirt}" alt="new arrivals">
             <details class="details">
               <summary>Details</summary>
                 <div class="card-details-contents">
