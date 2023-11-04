@@ -14,10 +14,6 @@ class ClothingCard extends LitElement {
         type: Boolean,
         reflect: true
       },
-
-      information: {
-        type: String
-      }
     }
   }
 
@@ -80,7 +76,6 @@ class ClothingCard extends LitElement {
     super();
     this.name = "T-Shirt";
     this.variation = false;
-    this.information = null;
   }
 
   render() {
@@ -92,8 +87,8 @@ class ClothingCard extends LitElement {
             <img src="${tshirt}" alt="new arrivals">
             <details class="details">
               <summary>Details</summary>
-                  <p>${this.information}</p>
-                  <slot></slot>
+                <p>We have new t-shirts!</p>
+                <slot></slot>
             </details>
           </div>
         </section>
