@@ -26,6 +26,17 @@ class ClothingCard extends LitElement {
       display: inline-block;
     }
     
+    .title {
+      background-color: #9dcc8b;
+      color: black;
+      padding: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;      
+    }
+
     .cards {
       display: flex;
       max-width: 8000px;
@@ -36,7 +47,6 @@ class ClothingCard extends LitElement {
     .card {
       max-width: 300px;
       background-color: #9dcc8b;
-      border: 1px solid black;
       margin: 16px;
       padding: 16px;
       display: flex;
@@ -46,7 +56,7 @@ class ClothingCard extends LitElement {
     }
 
     :host([variation]) .card {
-      background-color: #008aff;
+      background-color: #242424;
     }
 
     .card img {
@@ -62,12 +72,6 @@ class ClothingCard extends LitElement {
 
     .details {
       padding: 10px;
-    }
-
-    .card-details-contents ::slotted(img) {
-      max-width: 100px;
-      display: block;
-      margin: 0 auto;
     }
   `;
 
@@ -88,10 +92,8 @@ class ClothingCard extends LitElement {
             <img src="${tshirt}" alt="new arrivals">
             <details class="details">
               <summary>Details</summary>
-                <div class="card-details-contents">
                   <p>${this.information}</p>
                   <slot></slot>
-                </div>
             </details>
           </div>
         </section>

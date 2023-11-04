@@ -12,27 +12,84 @@
     body {
       font-family: sans-serif;
       background-color: #242424;
+      text-align: center;
     }
+
+    .title {
+      background-color: #9dcc8b;
+      color: black;
+      padding: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .btn-wrapper {
+      margin: 24px auto;
+  }
+
+  .btn-wrapper button {
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    transition: transform 0.3s;
+  }
+
+  .btn-wrapper button:hover,
+  .btn-wrapper button:focus {
+    font-size: 16px;
+    color: white;
+    background-color: #9dcc8b;
+    transform: scale(1.2);
+  }
   </style>
   <title>clothing-card</title>
 </head>
 
 <body>
-  <header>
+  <div class="title">
     <h1>Clothing Store</h1>
-  </header>
+  </div>
 
   <div class="btn-wrapper">
     <button id="duplicate">Duplicate</button>
     <button id="delcard">Delete Card</button>
     <button id="background">Toggle Background Color</button>
-    <button id="modifytitle">Change Heading</button>
+    <button id="modifyheading">Change Heading</button>
   </div>
   
   <div id="app">
     <clothing-card information="We have new t-shirts!"></clothing-card>
   </div>
   <script type="module" src="./src/clothing-card.js"></script>
+  <script>
+    const duplicateButton = document.querySelector('#duplicate')
+
+    duplicateButton.addEventListener('click', () => {
+        const clothingCard = document.querySelector('clothing-card');
+        clothingCard.insertAdjacentElement('afterend', clothingCard.cloneNode(true));
+    });
+
+    const deleteButton = document.querySelector('#delcard')
+
+    deleteButton.addEventListener('click', () => {
+      const allCardClones = document.querySelectorAll('clothing-card');
+        if (allCardClones.length > 1) {
+          allCardClones[allCardClones.length - 1].remove();
+        }
+    });
+
+    const backgroundButton = document.querySelector('#background')
+
+    backgroundButton.addEventListener('click', () => {
+      const clothingCard = document.querySelector('clothing-card');
+      clothingCard.variation = !clothingCard.variation;
+    });
+  </script>
 </body>
 
 </html>
